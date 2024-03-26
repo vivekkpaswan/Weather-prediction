@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction Result</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .weather-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Ensures the image is behind the content */
+        }
+
+        .content {
+            position: relative;
+            z-index: 1; /* Ensures the content is in front of the image */
+            color: white; /* Add white color for better readability */
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-image" id="weatherImage"></div>
+    <div class="container content">
+        <h1>Weather Prediction Result</h1>
+        <p>The predicted weather is: <span id="predictedWeather">{{ weather }}</span></p>
+    </div>
+    <script>
+        // Get the predicted weather from the span element
+        var predictedWeather = document.getElementById("predictedWeather").textContent;
+
+        // Function to set background image based on predicted weather
+        function setBackgroundImage(weather) {
+            var imageUrl = '';
+            switch(weather) {
+                case 'Drizzle':
+                    imageUrl = 'static/drizzle.jpg';
+                    break;
+                case 'Fog':
+                    imageUrl = 'static/fog.jpg';
+                    break;
+                case 'Rain':
+                    imageUrl = 'static/rain.jpg';
+                    break;
+                case 'Snow':
+                    imageUrl = 'static/snow.jpg';
+                    break;
+                case 'Sun':
+                    imageUrl = 'static/sun.jpg';
+                    break;
+                default:
+                    // Set default image or handle other cases
+                    imageUrl = 'static/default.jpg';
+            }
+            document.getElementById("weatherImage").style.backgroundImage = "url('" + imageUrl + "')";
+        }
+
+        // Call the function to set background image
+        setBackgroundImage(predictedWeather);
+    </script>
+</body>
+</html>
