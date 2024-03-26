@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Azure CLI Login
+      run: az login
+      
+    steps:
       - uses: actions/checkout@v4
 
       - name: Set up Python version
